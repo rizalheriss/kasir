@@ -70,7 +70,7 @@
 
           </div>
           <div class="col-md-8">
-            <h5>Subtotal : Rp. {{ $subtotal }}</h5>
+            <h5>Subtotal : Rp. {{ format_rupiah($subtotal) }}</h5>
           </div>
         </div>
 
@@ -79,7 +79,7 @@
 
           </div>
           <div class="col-md-8">
-            <a href="/admin/transakasi" class="btn btn-info"><i class="fas fa-arrow-left"></i>
+            <a href="/admin/transaksi" class="btn btn-info"><i class="fas fa-arrow-left"></i>
               Kembali</a>
             <button type="submit" class="btn btn-primary"> Tambah <i class="fas fa-arrow-right"></i></button>
           </div>
@@ -110,16 +110,16 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $item->produk_name }}</td>
             <td>{{ $item->qty}}</td>
-            <td>{{ $item->subtotal }}</td>
+            <td>{{ 'Rp.'.format_rupiah($item->subtotal) }}</td>
             <td>
-              <a href=""><i class="fas fa-times"></i></a>
+              <a href="/admin/transaksi/detail/delete?id={{ $item->id }}"><i class="fas fa-times"></i></a>
             </td>
           </tr>
           @endforeach
         </table>
 
         <a href="" class="btn btn-info"><i class="fas fa-file"></i> Pending</a>
-        <a href="" class="btn btn-success"><i class="fas fa-check"></i> Selesai</a>
+        <a href="/admin/transaksi/detail/selesai/{{ Request::segment(3) }}" class="btn btn-success"><i class="fas fa-check"></i> Selesai</a>
       </div>
     </div>
   </div>
@@ -149,10 +149,11 @@
 
         <div class="form-group">
           <label for="">Uang kembalian</label>
-          <input type="number" value="{{ $kembalian }}" disabled="kembalian" class="form-control" id="">
+          <input type="number" value="{{ format_rupiah($kembalian) }}" disabled="kembalian" class="form-control" id="">
         </div>
 
       </div>
     </div>
   </div>
 </div>
+

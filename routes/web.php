@@ -23,25 +23,34 @@ use App\Http\Controllers\AdminTransaksiDetailController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/login', [AdminAuthController::class, 'index']);
 Route::post('/login/do', [AdminAuthController::class, 'doLogin']);
 
+
 Route::get('/', function () {
     $data = [
-        'content'   => 'admin.dashboard.index'
+        'content'  => 'admin.dashboard.index'
     ];
     return view('admin.layout.wrapper', $data);
 });
 
-Route::prefix('/admin')->group(function(){
 
- Route::post('/transaksi/detail/create', [AdminTransaksiDetailController::class, 'create']);
- Route::resource('/transaksi' , AdminTransaksiController::class);
- Route::resource('/produk' , AdminProdukController::class);
- Route::resource('/kategori' , AdminKategoriController::class);
- Route::resource('/user' , AdminUserController::class);
+Route::prefix('/admin')->group(function  (){
+    Route::get('/dashboard', function() {
+        $data = [
+            'content'  => 'admin.dashboard.index'
+        ];
+        return view('admin.layout.wrapper', $data);
 
+    });
+
+    Route::get('/transaksi/detail/selesai/{id}', [AdminTransaksiDetailController::class, 'done']);
+    Route::get('/transaksi/detail/delete', [AdminTransaksiDetailController::class, 'delete']);
+    Route::post('/transaksi/detail/create', [AdminTransaksiDetailController::class, 'create']);
+    Route::resource('/transaksi', AdminTransaksiController::class );
+    Route::resource('/produk', AdminProdukController::class );
+    Route::resource('/kategori', AdminKategoriController::class );
+    Route::resource('/user', AdminUserController::class );
 });
 
 

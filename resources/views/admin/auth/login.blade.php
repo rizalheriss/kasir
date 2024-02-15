@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in</title>
+  <title>AdminLTE 3 | Log in (v2)</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -17,17 +16,18 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <div class="login-logo">
-    <a href="/vendor/admin/index2.html"><b>Admin</b>LTE</a>
-  </div>
   <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="/vendor/admin/index2.html" class="h1"><b>Admin</b>LTE</a>
+    </div>
+    <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
       @if(session()->has('loginError'))
-        <div class="alert alert-danger">{{ session('loginError')}}</div>
+      <div class="alert alert-danger">{{ session('loginError') }}</div>
       @endif
+
 
       <form action="/login/do" method="post">
         @csrf
@@ -38,11 +38,14 @@
               <span class="fas fa-envelope"></span>
             </div>
           </div>
+
           @error('email')
-            <div class="invalid-feedback">
-              {{ $message }}
-            </div>
-          @enderror
+          <div class="invalid-feedback">
+            {{ $message }}
+         </div>
+         @enderror  
+
+
         </div>
         <div class="input-group mb-3">
           <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
@@ -53,21 +56,22 @@
           </div>
           @error('password')
           <div class="invalid-feedback">
-              {{ $message }}
-          </div>
-          @enderror
+            {{ $message }}
+         </div>
+         @enderror  
+
         </div>
 
         <button type="submit" class="btn btn-primary btn-block">Login</button>
-      
+
       </form>
 
       
-      <!-- /.social-auth-links -->
-
+      </p>
     </div>
-    <!-- /.login-card-body -->
+    <!-- /.card-body -->
   </div>
+  <!-- /.card -->
 </div>
 <!-- /.login-box -->
 
