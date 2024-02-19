@@ -37,11 +37,11 @@ class AdminTransaksiController extends Controller
             Transaksi::create($data);
             
             $transaksi = Transaksi::create($data);
-            return redirect('/admin/transaksi/' . $transaksi->id . '/edit');
+            return redirect('/kasir/transaksi/' . $transaksi->id . '/edit');
         } else {
             // Handle the case where there is no authenticated user
             // For example, you can redirect to a login page
-            return redirect('/admin/transaksi/');
+            return redirect('/kasir/transaksi/');
         }
     }
     

@@ -23,7 +23,7 @@
           </div>
         </div>
 
-        <form action="/admin/transaksi/detail/create" method="POST">
+        <form action="/kasir/transaksi/detail/create" method="POST">
           @csrf
           
           <input type="hidden" name="transaksi_id" value="{{ Request::segment(3) }}">
@@ -112,14 +112,13 @@
             <td>{{ $item->qty}}</td>
             <td>{{ 'Rp.'.format_rupiah($item->subtotal) }}</td>
             <td>
-              <a href="/admin/transaksi/detail/delete?id={{ $item->id }}"><i class="fas fa-times"></i></a>
+              <a href="/kasir/transaksi/detail/delete?id={{ $item->id }}"><i class="fas fa-times"></i></a>
             </td>
           </tr>
           @endforeach
         </table>
 
-        <a href="" class="btn btn-info"><i class="fas fa-file"></i> Pending</a>
-        <a href="/admin/transaksi/detail/selesai/{{ Request::segment(3) }}" class="btn btn-success"><i class="fas fa-check"></i> Selesai</a>
+        <a href="/kasir/transaksi/detail/selesai/{{ Request::segment(3) }}" class="btn btn-success"><i class="fas fa-check"></i> Selesai</a>
       </div>
     </div>
   </div>

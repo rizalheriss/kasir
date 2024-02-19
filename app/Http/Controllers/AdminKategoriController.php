@@ -48,7 +48,7 @@ class AdminKategoriController extends Controller
         
         kategori::create($data);
         Alert::success('suskses','Data Berhasil Ditambahkan');
-        return redirect()->back();
+        return redirect('admin/kategori');
     }
 
     /**
@@ -87,7 +87,7 @@ class AdminKategoriController extends Controller
         ]);
         $kategori->update($data);
         Alert::success('suskses','Data Berhasil DiEdit');
-        return redirect()->back();
+        return redirect('admin/produk');
     }
 
     /**

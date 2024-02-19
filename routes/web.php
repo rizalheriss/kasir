@@ -35,22 +35,19 @@ Route::get('/', function () {
 });
 
 
-Route::prefix('/admin')->group(function  (){
-    Route::get('/dashboard', function() {
-        $data = [
-            'content'  => 'admin.dashboard.index'
-        ];
-        return view('admin.layout.wrapper', $data);
 
-    });
 
+ 
+    Route::middleware(['auth', 'userAkses:admin,pengguna'])->prefix('kasir')->group(function () {
     Route::get('/transaksi/detail/selesai/{id}', [AdminTransaksiDetailController::class, 'done']);
     Route::get('/transaksi/detail/delete', [AdminTransaksiDetailController::class, 'delete']);
     Route::post('/transaksi/detail/create', [AdminTransaksiDetailController::class, 'create']);
     Route::resource('/transaksi', AdminTransaksiController::class );
+});
+
+Route::middleware(['auth', 'userAkses:admin'])->prefix('admin')->group(function () {
     Route::resource('/produk', AdminProdukController::class );
     Route::resource('/kategori', AdminKategoriController::class );
     Route::resource('/user', AdminUserController::class );
+    
 });
-
-

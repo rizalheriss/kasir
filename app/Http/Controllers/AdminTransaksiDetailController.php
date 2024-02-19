@@ -46,7 +46,7 @@ class AdminTransaksiDetailController extends Controller
             ];
             $transaksi->update($dt);
         }
-        return redirect('/admin/transaksi/' . $transaksi_id . '/edit');
+        return redirect('/kasir/transaksi/' . $transaksi_id . '/edit');
     }
 
     function delete(){
@@ -71,6 +71,6 @@ class AdminTransaksiDetailController extends Controller
             'status'  => 'selesai'
         ];
         $transaksi->update($data);
-        return redirect('/admin/transaksi');
+        return redirect('/kasir/transaksi');
     }
 }
